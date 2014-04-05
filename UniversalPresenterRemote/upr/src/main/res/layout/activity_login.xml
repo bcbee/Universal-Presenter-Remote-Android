@@ -22,7 +22,7 @@
             android:layout_height="133dp"
             android:id="@+id/loginLogo"
             android:layout_gravity="center_horizontal"
-            android:src="@drawable/ic_launcher"
+            android:src="@drawable/uprlogo"
             android:contentDescription="@string/loginLogoAlt" />
 
         <TextView

@@ -22,7 +22,7 @@
             android:layout_height="200sp"
             android:id="@+id/aboutLogo"
             android:layout_gravity="center_horizontal"
-            android:src="@drawable/ic_launcher"
+            android:src="@drawable/uprlogo"
             android:contentDescription="@string/aboutLogoAlt" />
 
         <TextView
