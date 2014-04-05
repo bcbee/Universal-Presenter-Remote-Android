@@ -1,9 +1,4 @@
 <menu xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:tools="http://schemas.android.com/tools"
     tools:context="com.dbztech.universalpresenterremote.upr.ControlActivity" >
-    
-    <item android:id="@+id/action_about"
-        android:title="@string/action_button"
-        android:orderInCategory="100"
-        android:showAsAction="never" />
 </menu>
