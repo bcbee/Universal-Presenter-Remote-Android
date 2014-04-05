@@ -5,16 +5,17 @@ import android.content.Intent;
 import android.os.Bundle;
 import android.view.Menu;
 import android.view.MenuItem;
-import android.view.View;
-import android.widget.EditText;
+import android.widget.TextView;
 
-public class LoginActivity extends Activity {
-    public final static String TokenMessage = "com.dbztech.universalpresenterremote.upr.TOKEN";
+
+public class ControlActivity extends Activity {
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        setContentView(R.layout.activity_login);
+        setContentView(R.layout.activity_control);
+        Intent intent = getIntent();
+        String token = intent.getStringExtra(LoginActivity.TokenMessage);
     }
 
 
@@ -22,7 +23,7 @@ public class LoginActivity extends Activity {
     public boolean onCreateOptionsMenu(Menu menu) {
         
         // Inflate the menu; this adds items to the action bar if it is present.
-        getMenuInflater().inflate(R.menu.login, menu);
+        getMenuInflater().inflate(R.menu.control, menu);
         return true;
     }
 
@@ -38,13 +39,6 @@ public class LoginActivity extends Activity {
             return true;
         }
         return super.onOptionsItemSelected(item);
-    }
-
-    /** Called when the user clicks the Send button */
-    public void sendMessage(View view) {
-        Intent intent = new Intent(this, ControlActivity.class);
-        intent.putExtra(TokenMessage, "123456");
-        startActivity(intent);
     }
 
 }

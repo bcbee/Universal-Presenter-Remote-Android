@@ -16,6 +16,19 @@
                 <category android:name="android.intent.category.LAUNCHER" />
             </intent-filter>
         </activity>
+        <activity
+            android:name="com.dbztech.universalpresenterremote.upr.ControlActivity"
+            android:label="@string/title_activity_control"
+            android:parentActivityName="com.dbztech.universalpresenterremote.upr.LoginActivity"
+            android:screenOrientation="portrait">
+            <meta-data
+                android:name="android.support.PARENT_ACTIVITY"
+                android:value="LoginActivity" />
+        </activity>
+        <activity
+            android:name="com.dbztech.universalpresenterremote.upr.AboutActivity"
+            android:label="@string/title_activity_about" >
+        </activity>
     </application>
 
 </manifest>
