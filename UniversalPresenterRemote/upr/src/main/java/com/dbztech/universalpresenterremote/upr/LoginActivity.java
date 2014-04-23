@@ -19,7 +19,6 @@ public class LoginActivity extends Activity {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_login);
-        ServerCommunication.checkStatus();
         updateInterface();
     }
 
@@ -54,22 +53,35 @@ public class LoginActivity extends Activity {
     }
 
     public void updateInterface() {
-        new CountDownTimer(30000, 1000) {
+        ServerCommunication.checkStatus();
+        new CountDownTimer(1500, 750) {
 
             public void onTick(long millisUntilFinished) {
                 final Button connectButton = (Button) findViewById(R.id.connectButton);
-                if (ServerCommunication.controlMode > 0) {
-                    final TextView tokenView = (TextView) findViewById(R.id.loginToken);
-                    String set = Integer.toString(ServerCommunication.token);
-                    tokenView.setText(set);
-                    connectButton.setEnabled(true);
-                } else {
-                    connectButton.setEnabled(false);
+                final TextView tokenView = (TextView) findViewById(R.id.loginToken);
+                int test = ServerCommunication.controlMode;
+                String set = Integer.toString(ServerCommunication.token);
+                switch (ServerCommunication.controlMode) {
+                    case 0:
+                        connectButton.setEnabled(false);
+                        tokenView.setText("...");
+                        break;
+                    case 1:
+                        connectButton.setEnabled(false);
+                        connectButton.setText("Waiting...");
+                        tokenView.setText(set);
+                        break;
+                    case 2:
+                        connectButton.setEnabled(true);
+                        tokenView.setText(set);
+                        connectButton.setText("Begin");
+                        break;
                 }
             }
 
             public void onFinish() {
                 //Do nothing
+                updateInterface();
             }
         }.start();
     }

@@ -8,7 +8,7 @@ import com.loopj.android.http.*;
 
 public class ServerCommunication {
 
-    private static String serverAddress = "http://10.0.0.14/";
+    private static String serverAddress = "http://upr.dbztech.com/";
     public static int tempToken = 0;
     public static int token = 0;
     public static int uid = 12847398;
