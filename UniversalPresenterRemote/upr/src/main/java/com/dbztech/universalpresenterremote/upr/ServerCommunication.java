@@ -11,7 +11,7 @@ public class ServerCommunication {
     private static String serverAddress = "http://upr.dbztech.com/";
     public static int tempToken = 0;
     public static int token = 0;
-    public static int uid = 12847398;
+    public static int uid = 0;
     public static int controlMode = 0;
     public static boolean serverAvailable = false;
 
@@ -23,6 +23,10 @@ public class ServerCommunication {
                 newTokenCallback(response);
             }
         });
+    }
+
+    public static void setupUid() {
+        uid = 9999 + (int)(Math.random()*999999999);
     }
 
     public static void newTokenCallback(String response) {
@@ -40,6 +44,41 @@ public class ServerCommunication {
                 checkStatusCallback(response);
             }
         });
+    }
+
+    public static void reset() {
+        token = 0;
+        tempToken = 0;
+    }
+
+    public static void slideControl(int action) {
+        AsyncHttpClient client = new AsyncHttpClient();
+        switch (action) {
+            case 0:
+                client.get(serverAddress+"SlideDown?token="+tempToken+"&holdfor="+uid, new AsyncHttpResponseHandler() {
+                    @Override
+                    public void onSuccess(String response) {
+
+                    }
+                });
+                break;
+            case 1:
+                client.get(serverAddress+"SlideUp?token="+tempToken+"&holdfor="+uid, new AsyncHttpResponseHandler() {
+                    @Override
+                    public void onSuccess(String response) {
+
+                    }
+                });
+                break;
+            case 2:
+                client.get(serverAddress+"PlayMedia?token="+tempToken+"&holdfor="+uid, new AsyncHttpResponseHandler() {
+                    @Override
+                    public void onSuccess(String response) {
+
+                    }
+                });
+                break;
+        }
     }
 
     public static void checkStatusCallback(String response) {

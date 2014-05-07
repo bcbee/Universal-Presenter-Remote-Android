@@ -15,5 +15,8 @@
     <string name="backButtonAlt">Back Slide</string>
     <string name="aboutLogoAlt">UPR Logo</string>
     <string name="aboutDescription">Universal Presenter Remote version 1.0. Designed and developed by DBZ Technology</string>
+    <string name="mediaButton">Play Media</string>
+    <string name="nextButton">Next Slide</string>
+    <string name="previousButton">Previous Slide</string>
 
 </resources>

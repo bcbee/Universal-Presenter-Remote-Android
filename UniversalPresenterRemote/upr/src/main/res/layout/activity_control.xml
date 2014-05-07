@@ -6,7 +6,8 @@
     android:paddingRight="@dimen/activity_horizontal_margin"
     android:paddingTop="@dimen/activity_vertical_margin"
     android:paddingBottom="@dimen/activity_vertical_margin"
-    tools:context="com.dbztech.universalpresenterremote.upr.ControlActivity">
+    tools:context="com.dbztech.universalpresenterremote.upr.ControlActivity"
+    android:background="@color/DarkPurple">
 
     <LinearLayout
         android:orientation="vertical"
@@ -17,19 +18,34 @@
         android:layout_alignParentStart="true"
         android:layout_alignParentBottom="true">
 
-        <ImageButton
+        <Button
             android:layout_width="fill_parent"
-            android:layout_height="200sp"
+            android:layout_height="wrap_content"
+            android:text="@string/previousButton"
+            android:id="@+id/previousButton"
+            android:layout_gravity="center_horizontal"
+            android:layout_weight="1"
+            android:textSize="30dp"
+            android:onClick="slideDown" />
+
+        <Button
+            android:layout_width="fill_parent"
+            android:layout_height="wrap_content"
+            android:text="@string/nextButton"
             android:id="@+id/nextButton"
             android:layout_gravity="center_horizontal"
-            android:src="@drawable/ic_launcher"
-            android:contentDescription="@string/nextButtonAlt" />
+            android:layout_weight="1"
+            android:textSize="30dp"
+            android:onClick="slideUp" />
 
-        <ImageButton
+        <Button
             android:layout_width="fill_parent"
-            android:layout_height="200sp"
-            android:id="@+id/backButton"
-            android:src="@drawable/ic_launcher"
-            android:contentDescription="@string/backButtonAlt" />
+            android:layout_height="wrap_content"
+            android:text="@string/mediaButton"
+            android:id="@+id/mediaButton"
+            android:layout_gravity="center_horizontal"
+            android:layout_weight="1"
+            android:textSize="30dp"
+            android:onClick="playMedia" />
     </LinearLayout>
 </RelativeLayout>
