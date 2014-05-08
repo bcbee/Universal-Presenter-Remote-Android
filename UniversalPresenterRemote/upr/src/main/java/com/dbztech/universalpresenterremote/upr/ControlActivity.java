@@ -16,7 +16,6 @@ public class ControlActivity extends Activity {
         setContentView(R.layout.activity_control);
         Intent intent = getIntent();
         String token = intent.getStringExtra(LoginActivity.TokenMessage);
-        setTitle("Back");
     }
 
 
