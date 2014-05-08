@@ -14,7 +14,9 @@
     <string name="nextButtonAlt">Next Slide</string>
     <string name="backButtonAlt">Back Slide</string>
     <string name="aboutLogoAlt">UPR Logo</string>
-    <string name="aboutDescription">Universal Presenter Remote version 1.0. Designed and developed by DBZ Technology</string>
+    <string name="aboutDescription">Welcome and thank you for choosing Universal Presenter Remote! Setup is a snap and you will be presenting in no time. All you need to do is download this Universal Presenter Remote application on the presenting computer and controlling device. Instructions for downloading can be found on http://upr.dbztech.com.
+
+Once both applications have been downloaded, open both and find the unique token on the device that will be used as the remote. Enter this token on the computer that will be running the presentation and click the button labeled "Begin". This will allow you to click the begin button the remote. All you need to do now is click connect on the computer, open the presentation and start presenting. You can now control your presentation from another device!</string>
     <string name="mediaButton">Play Media</string>
     <string name="nextButton">Next Slide</string>
     <string name="previousButton">Previous Slide</string>

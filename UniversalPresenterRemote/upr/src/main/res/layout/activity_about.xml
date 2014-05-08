@@ -25,14 +25,22 @@
             android:src="@drawable/whitelogo"
             android:contentDescription="@string/aboutLogoAlt" />
 
-        <TextView
-            android:layout_width="275dp"
-            android:layout_height="wrap_content"
-            android:textAppearance="?android:attr/textAppearanceMedium"
-            android:text="@string/aboutDescription"
-            android:id="@+id/aboutTextView"
+        <ScrollView
+            android:layout_width="match_parent"
+            android:layout_height="0dp"
+            android:id="@+id/scrollView"
             android:layout_gravity="center_horizontal"
-            android:gravity="center" />
+            android:layout_weight="1">
+
+            <TextView
+                android:layout_width="fill_parent"
+                android:layout_height="wrap_content"
+                android:textAppearance="?android:attr/textAppearanceMedium"
+                android:text="@string/aboutDescription"
+                android:id="@+id/aboutTextView"
+                android:layout_gravity="center_horizontal"
+                android:gravity="center" />
+        </ScrollView>
 
     </LinearLayout>
 </RelativeLayout>
