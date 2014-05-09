@@ -7,6 +7,8 @@ import android.view.Menu;
 import android.view.MenuItem;
 import android.view.View;
 
+import com.google.android.gms.analytics.GoogleAnalytics;
+
 
 public class ControlActivity extends Activity {
 
@@ -14,8 +16,26 @@ public class ControlActivity extends Activity {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_control);
+
+        //Get a Tracker (should auto-report)
+        ((upr) getApplication()).getTracker(upr.TrackerName.APP_TRACKER);
+
         Intent intent = getIntent();
         String token = intent.getStringExtra(LoginActivity.TokenMessage);
+    }
+
+    @Override
+    public void onStart() {
+        super.onStart();
+        //Get an Analytics tracker to report app starts & uncaught exceptions etc.
+        GoogleAnalytics.getInstance(this).reportActivityStart(this);
+    }
+
+    @Override
+    public void onStop() {
+        super.onStop();
+        //Stop the analytics tracking
+        GoogleAnalytics.getInstance(this).reportActivityStop(this);
     }
 
 

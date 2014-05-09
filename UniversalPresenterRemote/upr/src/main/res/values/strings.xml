@@ -20,6 +20,6 @@ Once both applications have been downloaded, open both and find the unique token
     <string name="mediaButton">Play Media</string>
     <string name="nextButton">Next Slide</string>
     <string name="previousButton">Previous Slide</string>
-    <string name="inctructionButton">Inctructions</string>
+    <string name="instructionButton">Instructions</string>
 
 </resources>
