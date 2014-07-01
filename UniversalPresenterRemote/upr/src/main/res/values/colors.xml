@@ -1,9 +1,10 @@
 <?xml version="1.0" encoding="utf-8"?>
 <resources>
-    <color name="DarkPurple">#340636</color>
-    <color name="primary_dark">#340636</color>
-    <color name="LightPurple">#B30298</color>
-    <color name="primary">#B30298</color>
-    <color name="AccentPurple">#FF20DE</color>
-    <color name="accent">#FF20DE</color>
+
+    <color name="primary">#340636</color>
+    <color name="primary_dark">#240030</color>
+    <color name="accent">#B30298</color>
+    <color name="flare">#FF20DE</color>
+    <color name="white">#FFFFFF</color>
+
 </resources>
