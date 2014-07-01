@@ -18,15 +18,9 @@
         android:layout_alignParentLeft="true"
         android:layout_alignParentStart="true"
         android:weightSum="1">
-        <com.google.android.gms.ads.AdView android:id="@+id/adView"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            ads:adUnitId="ca-app-pub-8412389747226374/5967992818"
-            ads:adSize="BANNER"
-            android:layout_gravity="center_horizontal"
-            android:layout_margin="5dp" />
+
         <Button
-            android:layout_width="wrap_content"
+            android:layout_width="165dp"
             android:layout_height="wrap_content"
             android:text="@string/instructionButton"
             android:id="@+id/instructionButton"
@@ -67,7 +61,7 @@
             android:layout_margin="5dp" />
 
         <Button
-            android:layout_width="wrap_content"
+            android:layout_width="165dp"
             android:layout_height="wrap_content"
             android:text="@string/defaultButtonTitle"
             android:id="@+id/connectButton"
@@ -75,5 +69,13 @@
             android:onClick="sendMessage"
             android:enabled="false"
             android:layout_marginBottom="20dp" />
+
+        <com.google.android.gms.ads.AdView android:id="@+id/adView"
+            android:layout_width="320dp"
+            android:layout_height="50dp"
+            ads:adUnitId="ca-app-pub-8412389747226374/5967992818"
+            ads:adSize="BANNER"
+            android:layout_margin="5dp"
+            android:layout_gravity="center_horizontal" />
     </LinearLayout>
 </RelativeLayout>

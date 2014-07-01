@@ -12,10 +12,10 @@ import java.util.HashMap;
  */
 public class upr extends Application {
     // The following line should be changed to include the correct property id.
-    private static final String PROPERTY_ID = "UX-XXXXXXXX-X";
+    private static final String PROPERTY_ID = "UA-50792115-1";
 
     //Logging TAG
-    private static final String TAG = "MyApp";
+    private static final String TAG = "UPRAndroid";
 
     public static int GENERAL_TRACKER = 0;
 

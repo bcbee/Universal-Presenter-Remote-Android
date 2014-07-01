@@ -7,8 +7,7 @@
         android:icon="@drawable/ic_launcher"
         android:label="@string/app_name"
         android:theme="@style/AppTheme"
-        android:name=".upr"
-        android:debuggable="false">
+        android:name=".upr">
         <meta-data android:name="com.google.android.gms.version"
             android:value="@integer/google_play_services_version" />
         <!-- Google Analytics Version v4 needs this value for easy tracking -->
