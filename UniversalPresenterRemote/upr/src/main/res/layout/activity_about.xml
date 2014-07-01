@@ -22,7 +22,7 @@
             android:layout_height="200sp"
             android:id="@+id/aboutLogo"
             android:layout_gravity="center_horizontal"
-            android:src="@drawable/whitelogo"
+            android:src="@drawable/upr"
             android:contentDescription="@string/aboutLogoAlt" />
 
         <ScrollView
