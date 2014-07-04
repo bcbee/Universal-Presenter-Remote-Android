@@ -164,6 +164,9 @@ public class LoginActivity extends Activity {
                     final TextView tokenView = (TextView) findViewById(R.id.loginToken);
                     int test = ServerCommunication.controlMode;
                     String set = Integer.toString(ServerCommunication.token);
+                    if (ServerCommunication.token == 0) {
+                        ServerCommunication.controlMode = 0;
+                    }
                     switch (ServerCommunication.controlMode) {
                         case 0:
                             connectButton.setEnabled(false);
