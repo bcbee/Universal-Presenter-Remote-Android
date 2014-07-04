@@ -14,6 +14,7 @@ public class ServerCommunication {
     public static int uid = 0;
     public static int controlMode = 0;
     public static boolean serverAvailable = false;
+    public static String gcmtoken = "";
 
     public static void newToken() {
         AsyncHttpClient client = new AsyncHttpClient();
@@ -37,7 +38,18 @@ public class ServerCommunication {
 
     public static void checkStatus() {
         AsyncHttpClient client = new AsyncHttpClient();
-        client.get(serverAddress+"TempSession?token="+tempToken+"&holdfor="+uid, new AsyncHttpResponseHandler() {
+        client.get(serverAddress+"TempSession?token="+tempToken+"&holdfor="+uid+"&gcmtoken="+gcmtoken, new AsyncHttpResponseHandler() {
+            @Override
+            public void onSuccess(String response) {
+                serverAvailable = true;
+                checkStatusCallback(response);
+            }
+        });
+    }
+
+    public static void checkStatusSync() {
+        SyncHttpClient client = new SyncHttpClient();
+        client.get(serverAddress+"TempSession?token="+tempToken+"&holdfor="+uid+"&gcmtoken="+gcmtoken, new AsyncHttpResponseHandler() {
             @Override
             public void onSuccess(String response) {
                 serverAvailable = true;
