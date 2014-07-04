@@ -116,11 +116,8 @@ public class LoginActivity extends Activity {
         updateInterface = true;
         updateInterface();
         checkPlayServices();
-        String ns = Context.NOTIFICATION_SERVICE;
-        NotificationManager nMgr = (NotificationManager) getApplicationContext().getSystemService(ns);
-        nMgr.cancel(1);
+        clearNotifications();
     }
-
 
     @Override
     public boolean onCreateOptionsMenu(Menu menu) {
@@ -160,6 +157,7 @@ public class LoginActivity extends Activity {
             new CountDownTimer(1500, 250) {
 
                 public void onTick(long millisUntilFinished) {
+                    clearNotifications();
                     final Button connectButton = (Button) findViewById(R.id.connectButton);
                     final TextView tokenView = (TextView) findViewById(R.id.loginToken);
                     int test = ServerCommunication.controlMode;
@@ -330,5 +328,11 @@ public class LoginActivity extends Activity {
         editor.putString(PROPERTY_REG_ID, regId);
         editor.putInt(PROPERTY_APP_VERSION, appVersion);
         editor.commit();
+    }
+
+    public void clearNotifications() {
+        String ns = Context.NOTIFICATION_SERVICE;
+        NotificationManager nMgr = (NotificationManager) getApplicationContext().getSystemService(ns);
+        nMgr.cancel(1);
     }
 }
