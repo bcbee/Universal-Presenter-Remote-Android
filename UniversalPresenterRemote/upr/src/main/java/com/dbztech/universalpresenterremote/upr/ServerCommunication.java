@@ -2,31 +2,42 @@ package com.dbztech.universalpresenterremote.upr;
 
 import com.loopj.android.http.*;
 
+import org.apache.http.Header;
+
 /**
  * Created by Brendan on 4/6/2014.
  */
 
 public class ServerCommunication {
 
-    private static String serverAddress = "http://upr.dbztech.com/";
+    private static String serverAddress = "http://universalpresenterremote.azurewebsites.net/";
     public static int tempToken = 0;
     public static int token = 0;
     public static int uid = 0;
     public static int controlMode = 0;
     public static boolean serverAvailable = false;
+    public static String gcmtoken = "";
 
     public static void newToken() {
         AsyncHttpClient client = new AsyncHttpClient();
-        client.get(serverAddress+"NewSession", new AsyncHttpResponseHandler() {
+        client.get(serverAddress+"NewSession", new TextHttpResponseHandler() {
+
             @Override
-            public void onSuccess(String response) {
-                newTokenCallback(response);
+            public void onFailure(int statusCode, Header[] headers, String responseString, Throwable throwable) {
+
+            }
+
+            @Override
+            public void onSuccess(int statusCode, Header[] headers, String responseString) {
+                newTokenCallback(responseString);
             }
         });
     }
 
     public static void setupUid() {
-        uid = 9999 + (int)(Math.random()*999999999);
+        if (uid == 0) {
+            uid = 9999 + (int)(Math.random()*999999999);
+        }
     }
 
     public static void newTokenCallback(String response) {
@@ -37,11 +48,34 @@ public class ServerCommunication {
 
     public static void checkStatus() {
         AsyncHttpClient client = new AsyncHttpClient();
-        client.get(serverAddress+"TempSession?token="+tempToken+"&holdfor="+uid, new AsyncHttpResponseHandler() {
+        client.get(serverAddress+"TempSession?token="+tempToken+"&holdfor="+uid+"&gcmtoken="+gcmtoken, new TextHttpResponseHandler() {
+
             @Override
-            public void onSuccess(String response) {
+            public void onFailure(int statusCode, Header[] headers, String responseString, Throwable throwable) {
+
+            }
+
+            @Override
+            public void onSuccess(int statusCode, Header[] headers, String responseString) {
                 serverAvailable = true;
-                checkStatusCallback(response);
+                checkStatusCallback(responseString);
+            }
+        });
+    }
+
+    public static void checkStatusSync() {
+        SyncHttpClient client = new SyncHttpClient();
+        client.get(serverAddress+"TempSession?token="+tempToken+"&holdfor="+uid+"&gcmtoken="+gcmtoken, new TextHttpResponseHandler() {
+
+            @Override
+            public void onFailure(int statusCode, Header[] headers, String responseString, Throwable throwable) {
+
+            }
+
+            @Override
+            public void onSuccess(int statusCode, Header[] headers, String responseString) {
+                serverAvailable = true;
+                checkStatusCallback(responseString);
             }
         });
     }
@@ -55,25 +89,43 @@ public class ServerCommunication {
         AsyncHttpClient client = new AsyncHttpClient();
         switch (action) {
             case 0:
-                client.get(serverAddress+"SlideDown?token="+tempToken+"&holdfor="+uid, new AsyncHttpResponseHandler() {
+                client.get(serverAddress+"SlideDown?token="+tempToken+"&holdfor="+uid, new TextHttpResponseHandler() {
+
                     @Override
-                    public void onSuccess(String response) {
+                    public void onFailure(int statusCode, Header[] headers, String responseString, Throwable throwable) {
+
+                    }
+
+                    @Override
+                    public void onSuccess(int statusCode, Header[] headers, String responseString) {
 
                     }
                 });
                 break;
             case 1:
                 client.get(serverAddress+"SlideUp?token="+tempToken+"&holdfor="+uid, new AsyncHttpResponseHandler() {
+
                     @Override
-                    public void onSuccess(String response) {
+                    public void onSuccess(int statusCode, Header[] headers, byte[] responseBody) {
+
+                    }
+
+                    @Override
+                    public void onFailure(int statusCode, Header[] headers, byte[] responseBody, Throwable error) {
 
                     }
                 });
                 break;
             case 2:
                 client.get(serverAddress+"PlayMedia?token="+tempToken+"&holdfor="+uid, new AsyncHttpResponseHandler() {
+
                     @Override
-                    public void onSuccess(String response) {
+                    public void onSuccess(int statusCode, Header[] headers, byte[] responseBody) {
+
+                    }
+
+                    @Override
+                    public void onFailure(int statusCode, Header[] headers, byte[] responseBody, Throwable error) {
 
                     }
                 });
