@@ -160,7 +160,6 @@ public class LoginActivity extends Activity {
                     clearNotifications();
                     final Button connectButton = (Button) findViewById(R.id.connectButton);
                     final TextView tokenView = (TextView) findViewById(R.id.loginToken);
-                    int test = ServerCommunication.controlMode;
                     String set = Integer.toString(ServerCommunication.token);
                     if (ServerCommunication.token == 0) {
                         ServerCommunication.controlMode = 0;
