@@ -10,7 +10,7 @@ import org.apache.http.Header;
 
 public class ServerCommunication {
 
-    private static String serverAddress = "http://universalpresenterremote.azurewebsites.net/";
+    private static String serverAddress = "http://universalpresenterremote.com/";
     public static int tempToken = 0;
     public static int token = 0;
     public static int uid = 0;
