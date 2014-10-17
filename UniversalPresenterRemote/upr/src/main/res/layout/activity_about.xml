@@ -17,14 +17,6 @@
         android:layout_alignParentEnd="true"
         android:weightSum="1">
 
-        <ImageView
-            android:layout_width="200sp"
-            android:layout_height="200sp"
-            android:id="@+id/aboutLogo"
-            android:layout_gravity="center_horizontal"
-            android:src="@drawable/upr"
-            android:contentDescription="@string/aboutLogoAlt" />
-
         <ScrollView
             android:layout_width="match_parent"
             android:layout_height="0dp"
@@ -32,14 +24,29 @@
             android:layout_gravity="center_horizontal"
             android:layout_weight="1">
 
-            <TextView
+
+            <LinearLayout
+                android:orientation="vertical"
                 android:layout_width="fill_parent"
-                android:layout_height="wrap_content"
-                android:textAppearance="?android:attr/textAppearanceMedium"
-                android:text="@string/aboutDescription"
-                android:id="@+id/aboutTextView"
-                android:layout_gravity="center_horizontal"
-                android:gravity="center" />
+                android:layout_height="wrap_content">
+
+                <ImageView
+                    android:layout_width="200sp"
+                    android:layout_height="200sp"
+                    android:id="@+id/aboutLogo"
+                    android:layout_gravity="center_horizontal"
+                    android:src="@drawable/upr"
+                    android:contentDescription="@string/aboutLogoAlt" />
+
+                <TextView
+                    android:layout_width="fill_parent"
+                    android:layout_height="wrap_content"
+                    android:textAppearance="?android:attr/textAppearanceMedium"
+                    android:text="@string/aboutDescription"
+                    android:id="@+id/aboutTextView"
+                    android:layout_gravity="center_horizontal"
+                    android:gravity="center" />
+            </LinearLayout>
         </ScrollView>
 
     </LinearLayout>
