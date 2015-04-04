@@ -1,9 +1,12 @@
 package com.dbztech.universalpresenterremote.upr;
 
 import android.app.Activity;
+import android.content.Intent;
+import android.net.Uri;
 import android.os.Bundle;
 import android.view.Menu;
 import android.view.MenuItem;
+import android.view.View;
 
 import com.google.android.gms.analytics.GoogleAnalytics;
 
@@ -48,6 +51,11 @@ public class AboutActivity extends Activity {
         // as you specify a parent activity in AndroidManifest.xml.
         int id = item.getItemId();
         return super.onOptionsItemSelected(item);
+    }
+
+    public void goToWebsite(View view) {
+        Intent browserIntent = new Intent(Intent.ACTION_VIEW, Uri.parse("https://universalpresenterremote.com"));
+        startActivity(browserIntent);
     }
 
 }

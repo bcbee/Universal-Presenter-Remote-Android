@@ -64,7 +64,7 @@ public class GcmIntentService extends IntentService {
             String message = extras.getString("message");
             if (GoogleCloudMessaging.MESSAGE_TYPE_MESSAGE.equals(messageType) && message.equals("UPR-Refresh")) {
                 // Post notification of received message.
-                ServerCommunication.checkStatusSync();
+                ServerCommunication.checkStatus();
                 sendNotification("");
             }
         }

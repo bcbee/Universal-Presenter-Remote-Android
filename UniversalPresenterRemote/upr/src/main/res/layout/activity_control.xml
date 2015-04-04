@@ -20,12 +20,12 @@
         <Button
             android:layout_width="fill_parent"
             android:layout_height="wrap_content"
-            android:text="@string/previousButton"
-            android:id="@+id/previousButton"
+            android:text="@string/mediaButton"
+            android:id="@+id/mediaButton"
             android:layout_gravity="center_horizontal"
             android:layout_weight="1"
             android:textSize="30dp"
-            android:onClick="slideDown" />
+            android:onClick="playMedia" />
 
         <Button
             android:layout_width="fill_parent"
@@ -40,11 +40,12 @@
         <Button
             android:layout_width="fill_parent"
             android:layout_height="wrap_content"
-            android:text="@string/mediaButton"
-            android:id="@+id/mediaButton"
+            android:text="@string/previousButton"
+            android:id="@+id/previousButton"
             android:layout_gravity="center_horizontal"
             android:layout_weight="1"
             android:textSize="30dp"
-            android:onClick="playMedia" />
+            android:onClick="slideDown" />
+
     </LinearLayout>
 </RelativeLayout>

@@ -46,6 +46,15 @@
                     android:id="@+id/aboutTextView"
                     android:layout_gravity="center_horizontal"
                     android:gravity="center" />
+
+                <Button
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="@string/goToWebsite"
+                    android:id="@+id/websiteButton"
+                    android:layout_gravity="center_horizontal"
+                    android:layout_marginTop="10dp"
+                    android:onClick="goToWebsite" />
             </LinearLayout>
         </ScrollView>
 
