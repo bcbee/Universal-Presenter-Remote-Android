@@ -48,12 +48,12 @@ public class ServerCommunication {
             client.get(serverAddress+"NewSession", new TextHttpResponseHandler() {
 
                 @Override
-                public void onFailure(int statusCode, Header[] headers, String responseString, Throwable throwable) {
+                public void onFailure(int statusCode, cz.msebera.android.httpclient.Header[] headers, String responseString, Throwable throwable) {
 
                 }
 
                 @Override
-                public void onSuccess(int statusCode, Header[] headers, String responseString) {
+                public void onSuccess(int statusCode, cz.msebera.android.httpclient.Header[] headers, String responseString) {
                     newTokenCallback(responseString);
                 }
             });
@@ -96,12 +96,12 @@ public class ServerCommunication {
             client.get(serverAddress+"TempSession?token="+tempToken+"&holdfor="+uid+"&gcmtoken="+gcmtoken, new TextHttpResponseHandler() {
 
                 @Override
-                public void onFailure(int statusCode, Header[] headers, String responseString, Throwable throwable) {
+                public void onFailure(int statusCode, cz.msebera.android.httpclient.Header[] headers, String responseString, Throwable throwable) {
 
                 }
 
                 @Override
-                public void onSuccess(int statusCode, Header[] headers, String responseString) {
+                public void onSuccess(int statusCode, cz.msebera.android.httpclient.Header[] headers, String responseString) {
                     serverAvailable = true;
                     checkStatusCallback(responseString);
                 }
@@ -140,12 +140,12 @@ public class ServerCommunication {
                     client.get(serverAddress+"SlideDown?token="+tempToken+"&holdfor="+uid, new AsyncHttpResponseHandler() {
 
                         @Override
-                        public void onSuccess(int statusCode, Header[] headers, byte[] responseBody) {
+                        public void onSuccess(int statusCode, cz.msebera.android.httpclient.Header[] headers, byte[] responseBody) {
 
                         }
 
                         @Override
-                        public void onFailure(int statusCode, Header[] headers, byte[] responseBody, Throwable error) {
+                        public void onFailure(int statusCode, cz.msebera.android.httpclient.Header[] headers, byte[] responseBody, Throwable error) {
 
                         }
                     });
@@ -154,12 +154,12 @@ public class ServerCommunication {
                     client.get(serverAddress+"SlideUp?token="+tempToken+"&holdfor="+uid, new AsyncHttpResponseHandler() {
 
                         @Override
-                        public void onSuccess(int statusCode, Header[] headers, byte[] responseBody) {
+                        public void onSuccess(int statusCode, cz.msebera.android.httpclient.Header[] headers, byte[] responseBody) {
 
                         }
 
                         @Override
-                        public void onFailure(int statusCode, Header[] headers, byte[] responseBody, Throwable error) {
+                        public void onFailure(int statusCode, cz.msebera.android.httpclient.Header[] headers, byte[] responseBody, Throwable error) {
 
                         }
                     });
@@ -168,12 +168,12 @@ public class ServerCommunication {
                     client.get(serverAddress+"PlayMedia?token="+tempToken+"&holdfor="+uid, new AsyncHttpResponseHandler() {
 
                         @Override
-                        public void onSuccess(int statusCode, Header[] headers, byte[] responseBody) {
+                        public void onSuccess(int statusCode, cz.msebera.android.httpclient.Header[] headers, byte[] responseBody) {
 
                         }
 
                         @Override
-                        public void onFailure(int statusCode, Header[] headers, byte[] responseBody, Throwable error) {
+                        public void onFailure(int statusCode, cz.msebera.android.httpclient.Header[] headers, byte[] responseBody, Throwable error) {
 
                         }
                     });
