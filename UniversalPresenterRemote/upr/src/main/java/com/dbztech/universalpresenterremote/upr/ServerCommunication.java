@@ -1,5 +1,6 @@
 package com.dbztech.universalpresenterremote.upr;
 
+import android.os.Handler;
 import android.os.Looper;
 
 import com.loopj.android.http.*;
@@ -28,7 +29,9 @@ public class ServerCommunication {
     public static boolean serverAvailable = false;
     public static String gcmtoken = "";
 
-    public static void newToken() {
+    private static AsyncHttpClient clientInstance;
+
+    public static AsyncHttpClient getClient() {
         if (Looper.myLooper() == null) {
             try {
                 Looper.prepare();
@@ -36,21 +39,35 @@ public class ServerCommunication {
                 e.printStackTrace();
             }
         }
+
+        if (clientInstance == null) {
+            try {
+                /// We initialize a default Keystore
+                KeyStore trustStore = KeyStore.getInstance(KeyStore.getDefaultType());
+                // We load the KeyStore
+                trustStore.load(null, null);
+                // We initialize a new SSLSocketFacrory
+                MySSLSocketFactory socketFactory = new MySSLSocketFactory(trustStore);
+                // We set that all host names are allowed in the socket factory
+                socketFactory.setHostnameVerifier(MySSLSocketFactory.ALLOW_ALL_HOSTNAME_VERIFIER);
+                // We initialize the Async Client
+                clientInstance = new AsyncHttpClient();
+                // We set the timeout to 30 seconds
+                clientInstance.setTimeout(5 * 1000);
+                // We set the SSL Factory
+                clientInstance.setSSLSocketFactory(socketFactory);
+            } catch (Exception e) {
+                e.printStackTrace(System.err);
+            }
+        }
+
+        return clientInstance;
+    }
+
+    public static void newToken() {
+
         try {
-            /// We initialize a default Keystore
-            KeyStore trustStore = KeyStore.getInstance(KeyStore.getDefaultType());
-            // We load the KeyStore
-            trustStore.load(null, null);
-            // We initialize a new SSLSocketFacrory
-            MySSLSocketFactory socketFactory = new MySSLSocketFactory(trustStore);
-            // We set that all host names are allowed in the socket factory
-            socketFactory.setHostnameVerifier(MySSLSocketFactory.ALLOW_ALL_HOSTNAME_VERIFIER);
-            // We initialize the Async Client
-            AsyncHttpClient client = new AsyncHttpClient();
-            // We set the timeout to 30 seconds
-            client.setTimeout(5 * 1000);
-            // We set the SSL Factory
-            client.setSSLSocketFactory(socketFactory);
+            AsyncHttpClient client = getClient();
             // We initialize a GET http request
             System.out.println("UPR Cloud Query: NewToken");
             client.get(serverAddress + "NewSession", new TextHttpResponseHandler() {
@@ -84,28 +101,8 @@ public class ServerCommunication {
     }
 
     public static void checkStatus() {
-        if (Looper.myLooper() == null) {
-            try {
-                Looper.prepare();
-            } catch (Exception e) {
-                e.printStackTrace();
-            }
-        }
         try {
-            /// We initialize a default Keystore
-            KeyStore trustStore = KeyStore.getInstance(KeyStore.getDefaultType());
-            // We load the KeyStore
-            trustStore.load(null, null);
-            // We initialize a new SSLSocketFacrory
-            MySSLSocketFactory socketFactory = new MySSLSocketFactory(trustStore);
-            // We set that all host names are allowed in the socket factory
-            socketFactory.setHostnameVerifier(MySSLSocketFactory.ALLOW_ALL_HOSTNAME_VERIFIER);
-            // We initialize the Async Client
-            SyncHttpClient client = new SyncHttpClient();
-            // We set the timeout to 30 seconds
-            client.setTimeout(5 * 1000);
-            // We set the SSL Factory
-            client.setSSLSocketFactory(socketFactory);
+            AsyncHttpClient client = getClient();
             // We initialize a GET http request
             System.out.println("UPR Cloud Query: CheckToken");
             client.get(serverAddress + "TempSession?token=" + tempToken + "&holdfor=" + uid + "&gcmtoken=" + gcmtoken, new TextHttpResponseHandler() {
@@ -133,28 +130,8 @@ public class ServerCommunication {
     }
 
     public static void slideControl(int action) {
-        if (Looper.myLooper() == null) {
-            try {
-                Looper.prepare();
-            } catch (Exception e) {
-                e.printStackTrace();
-            }
-        }
         try {
-            /// We initialize a default Keystore
-            KeyStore trustStore = KeyStore.getInstance(KeyStore.getDefaultType());
-            // We load the KeyStore
-            trustStore.load(null, null);
-            // We initialize a new SSLSocketFacrory
-            MySSLSocketFactory socketFactory = new MySSLSocketFactory(trustStore);
-            // We set that all host names are allowed in the socket factory
-            socketFactory.setHostnameVerifier(MySSLSocketFactory.ALLOW_ALL_HOSTNAME_VERIFIER);
-            // We initialize the Async Client
-            AsyncHttpClient client = new AsyncHttpClient();
-            // We set the timeout to 30 seconds
-            client.setTimeout(5 * 1000);
-            // We set the SSL Factory
-            client.setSSLSocketFactory(socketFactory);
+            AsyncHttpClient client = getClient();
             // We initialize a GET http request
             System.out.println("UPR Cloud Query: ChangeSlide");
             switch (action) {

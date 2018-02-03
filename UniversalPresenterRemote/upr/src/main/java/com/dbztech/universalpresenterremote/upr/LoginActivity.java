@@ -10,6 +10,8 @@ import android.content.pm.PackageManager;
 import android.os.AsyncTask;
 import android.os.Bundle;
 import android.os.CountDownTimer;
+import android.os.Handler;
+import android.os.Looper;
 import android.os.StrictMode;
 import android.util.Log;
 import android.view.Menu;
@@ -313,9 +315,18 @@ public class LoginActivity extends Activity {
      * using the 'from' address in the message.
      */
     private void sendRegistrationIdToBackend() {
-        // Your implementation here.
-        ServerCommunication.gcmtoken = getRegistrationId(context);
-        ServerCommunication.checkStatus();
+        // Get a handler that can be used to post to the main thread
+        Handler mainHandler = new Handler(Looper.getMainLooper());
+
+        Runnable myRunnable = new Runnable() {
+            @Override
+            public void run() {
+                // Your implementation here.
+                ServerCommunication.gcmtoken = getRegistrationId(context);
+                ServerCommunication.checkStatus();
+            } // This is your code
+        };
+        mainHandler.post(myRunnable);
     }
 
     /**
