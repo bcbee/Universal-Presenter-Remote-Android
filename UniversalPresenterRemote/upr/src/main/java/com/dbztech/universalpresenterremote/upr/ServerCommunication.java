@@ -1,5 +1,7 @@
 package com.dbztech.universalpresenterremote.upr;
 
+import android.os.Looper;
+
 import com.loopj.android.http.*;
 
 import org.apache.http.Header;
@@ -27,7 +29,13 @@ public class ServerCommunication {
     public static String gcmtoken = "";
 
     public static void newToken() {
-
+        if (Looper.myLooper() == null) {
+            try {
+                Looper.prepare();
+            } catch (Exception e) {
+                e.printStackTrace();
+            }
+        }
         try {
             /// We initialize a default Keystore
             KeyStore trustStore = KeyStore.getInstance(KeyStore.getDefaultType());
@@ -40,16 +48,16 @@ public class ServerCommunication {
             // We initialize the Async Client
             AsyncHttpClient client = new AsyncHttpClient();
             // We set the timeout to 30 seconds
-            client.setTimeout(30 * 1000);
+            client.setTimeout(5 * 1000);
             // We set the SSL Factory
             client.setSSLSocketFactory(socketFactory);
             // We initialize a GET http request
             System.out.println("UPR Cloud Query: NewToken");
-            client.get(serverAddress+"NewSession", new TextHttpResponseHandler() {
+            client.get(serverAddress + "NewSession", new TextHttpResponseHandler() {
 
                 @Override
                 public void onFailure(int statusCode, cz.msebera.android.httpclient.Header[] headers, String responseString, Throwable throwable) {
-
+                    System.err.println("UPR Error! NewSession failed.");
                 }
 
                 @Override
@@ -58,24 +66,31 @@ public class ServerCommunication {
                 }
             });
         } catch (Exception e) {
-            System.out.println("UPR Error! Callback: NewToken - "+e);
+            System.err.println("UPR Error! Callback: NewToken - " + e);
         }
     }
 
     public static void setupUid() {
         if (uid == 0) {
-            uid = 9999 + (int)(Math.random()*999999999);
+            uid = 9999 + (int) (Math.random() * 999999999);
         }
-        System.out.println("UPR Set up: "+uid);
+        System.out.println("UPR Set up: " + uid);
     }
 
     public static void newTokenCallback(String response) {
         tempToken = Integer.parseInt(response);
-        System.out.println("UPR Token Assigned: "+tempToken);
+        System.out.println("UPR Token Assigned: " + tempToken);
         checkStatus();
     }
 
     public static void checkStatus() {
+        if (Looper.myLooper() == null) {
+            try {
+                Looper.prepare();
+            } catch (Exception e) {
+                e.printStackTrace();
+            }
+        }
         try {
             /// We initialize a default Keystore
             KeyStore trustStore = KeyStore.getInstance(KeyStore.getDefaultType());
@@ -88,16 +103,16 @@ public class ServerCommunication {
             // We initialize the Async Client
             SyncHttpClient client = new SyncHttpClient();
             // We set the timeout to 30 seconds
-            client.setTimeout(30*1000);
+            client.setTimeout(5 * 1000);
             // We set the SSL Factory
             client.setSSLSocketFactory(socketFactory);
             // We initialize a GET http request
             System.out.println("UPR Cloud Query: CheckToken");
-            client.get(serverAddress+"TempSession?token="+tempToken+"&holdfor="+uid+"&gcmtoken="+gcmtoken, new TextHttpResponseHandler() {
+            client.get(serverAddress + "TempSession?token=" + tempToken + "&holdfor=" + uid + "&gcmtoken=" + gcmtoken, new TextHttpResponseHandler() {
 
                 @Override
                 public void onFailure(int statusCode, cz.msebera.android.httpclient.Header[] headers, String responseString, Throwable throwable) {
-
+                    System.err.println("UPR Error! CheckToken failed.");
                 }
 
                 @Override
@@ -107,7 +122,7 @@ public class ServerCommunication {
                 }
             });
         } catch (Exception e) {
-            System.out.println("UPR Error! Callback: CheckStatus - "+e);
+            System.err.println("UPR Error! Callback: CheckStatus - " + e);
         }
 
     }
@@ -118,6 +133,13 @@ public class ServerCommunication {
     }
 
     public static void slideControl(int action) {
+        if (Looper.myLooper() == null) {
+            try {
+                Looper.prepare();
+            } catch (Exception e) {
+                e.printStackTrace();
+            }
+        }
         try {
             /// We initialize a default Keystore
             KeyStore trustStore = KeyStore.getInstance(KeyStore.getDefaultType());
@@ -130,14 +152,14 @@ public class ServerCommunication {
             // We initialize the Async Client
             AsyncHttpClient client = new AsyncHttpClient();
             // We set the timeout to 30 seconds
-            client.setTimeout(30 * 1000);
+            client.setTimeout(5 * 1000);
             // We set the SSL Factory
             client.setSSLSocketFactory(socketFactory);
             // We initialize a GET http request
             System.out.println("UPR Cloud Query: ChangeSlide");
             switch (action) {
                 case 0:
-                    client.get(serverAddress+"SlideDown?token="+tempToken+"&holdfor="+uid, new AsyncHttpResponseHandler() {
+                    client.get(serverAddress + "SlideDown?token=" + tempToken + "&holdfor=" + uid, new AsyncHttpResponseHandler() {
 
                         @Override
                         public void onSuccess(int statusCode, cz.msebera.android.httpclient.Header[] headers, byte[] responseBody) {
@@ -151,7 +173,7 @@ public class ServerCommunication {
                     });
                     break;
                 case 1:
-                    client.get(serverAddress+"SlideUp?token="+tempToken+"&holdfor="+uid, new AsyncHttpResponseHandler() {
+                    client.get(serverAddress + "SlideUp?token=" + tempToken + "&holdfor=" + uid, new AsyncHttpResponseHandler() {
 
                         @Override
                         public void onSuccess(int statusCode, cz.msebera.android.httpclient.Header[] headers, byte[] responseBody) {
@@ -165,7 +187,7 @@ public class ServerCommunication {
                     });
                     break;
                 case 2:
-                    client.get(serverAddress+"PlayMedia?token="+tempToken+"&holdfor="+uid, new AsyncHttpResponseHandler() {
+                    client.get(serverAddress + "PlayMedia?token=" + tempToken + "&holdfor=" + uid, new AsyncHttpResponseHandler() {
 
                         @Override
                         public void onSuccess(int statusCode, cz.msebera.android.httpclient.Header[] headers, byte[] responseBody) {
@@ -180,7 +202,7 @@ public class ServerCommunication {
                     break;
             }
         } catch (Exception e) {
-            System.out.println("UPR Error! Callback: ChangeSlide - "+e);
+            System.err.println("UPR Error! Callback: ChangeSlide - " + e);
         }
     }
 
