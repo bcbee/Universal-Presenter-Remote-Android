@@ -24,6 +24,8 @@ import android.app.PendingIntent;
 import android.content.Context;
 import android.content.Intent;
 import android.os.Bundle;
+import android.os.Handler;
+import android.os.Looper;
 import android.os.SystemClock;
 import android.support.v4.app.NotificationCompat;
 import android.util.Log;
@@ -64,7 +66,17 @@ public class GcmIntentService extends IntentService {
             String message = extras.getString("message");
             if (GoogleCloudMessaging.MESSAGE_TYPE_MESSAGE.equals(messageType) && message.equals("UPR-Refresh")) {
                 // Post notification of received message.
-                ServerCommunication.checkStatus();
+                // Get a handler that can be used to post to the main thread
+                Handler mainHandler = new Handler(Looper.getMainLooper());
+
+                Runnable myRunnable = new Runnable() {
+                    @Override
+                    public void run() {
+                        // Your implementation here.
+                        ServerCommunication.checkStatus();
+                    } // This is your code
+                };
+                mainHandler.post(myRunnable);
                 sendNotification("");
             }
         }
